@@ -1,15 +1,19 @@
-const express = require("express")
-const route = require("./routes/kehadiran")
-const mongoose = require("./config/mongoose");
-const kehadiranModel = require("./models/kehadiran");
+const express = require('express')
 const app = express()
-
-app.use(route)
-
-mongoose();
-
+const RouteSiswa = require('./routes/kehadiran')
+const ConfigDB = require('./config/mongoose')
 const port = 3000
 
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.use(RouteSiswa)
+ConfigDB()
+
 app.listen(port, () => {
-    console.log(`listening on port http://localhost:${port}` )
+  console.log(`Server Running on port ${port}`)
 })

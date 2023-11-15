@@ -1,18 +1,16 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const TableSchema = new mongoose.Schema({
-    name: {
+const userSchema = new mongoose.Schema({
+    nama: {
         type: String,
-        required: (true, 'Harap Masukkan Nama'),
-        unique: true,
-      },
-      email: {
+        required: [true, 'Silahkan Isi Nama'],
+    },
+    email: {
         type: String,
-        required: (true, 'Harap Masukkan Email'),
+        required: true,
         unique: true,
-        match: [/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/, 'Harap Masukkan Email yang valid']
-      }
-});
+        match: [ /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/]
+    }
+})
 
-module.exports = mongoose.model("User", TableSchema);
-
+module.exports = mongoose.model('User', userSchema)
